@@ -1,0 +1,15 @@
+echo "# Curso_Java_Avancado" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/leandrospires/Curso_Java_Avancado.git
+git push -u origin main
+
+Sala Meeting
+https://meet.google.com/eyz-frse-rcx
+
+
+
+http://localhost:8080/projeto01_conceitos/index.html
+
