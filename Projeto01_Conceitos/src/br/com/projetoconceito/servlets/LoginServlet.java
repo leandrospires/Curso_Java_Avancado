@@ -1,6 +1,7 @@
 package br.com.projetoconceito.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,9 @@ public class LoginServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("login.jsp");
+		//response.sendRedirect("login.jsp");
+		request.getRequestDispatcher("/WEB-INF/admin/login.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,14 +30,21 @@ public class LoginServlet extends HttpServlet {
 			
 			if ( usuario.equals("admin") && (senha.equals("admin")) ) {
 
-				response.sendRedirect("resultado.jsp");
+				//response.sendRedirect("resultado.jsp");
+				request.setAttribute("mensagem", "Usuário Autenticado!");
 				
 			} else {
-				throw new Exception();
+				//throw new Exception();
+				request.setAttribute("mensagem", "Erro de autenticação.");
 			}
 			
 		}catch (Exception e) {
-			response.sendRedirect("erro.jsp");
+			//response.sendRedirect("erro.jsp");
+			throw e;
+		} finally {
+			
+			request.getRequestDispatcher("/WEB-INF/admin/resultado.jsp").forward(request, response);
+			
 		}
 
 
