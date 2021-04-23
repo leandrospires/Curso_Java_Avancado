@@ -2,6 +2,7 @@ package br.com.projeto.classes;
 
 import java.util.Date;
 
+//JavaBens - POJO: Plain Old Java Objects)
 public class Funcionario {
 	
 	private String nome;
@@ -12,6 +13,20 @@ public class Funcionario {
 	private double irpf;
 	private double s_liquido;
 	
+
+	public Funcionario() {}	
+
+	
+	public Funcionario(String nome, Date dataNascimento, String cargo, double salario) {
+		this.setNome(nome);
+		this.setDataNascimento(dataNascimento);
+		this.setCargo(cargo);
+		this.setSalario(salario);
+	}
+
+
+
+
 	private double calcularIrpf(double salario) {
 		double[] taxas = {0, 7.5, 15, 22.5, 27.5};
 
