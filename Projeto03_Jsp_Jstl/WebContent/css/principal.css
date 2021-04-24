@@ -1,0 +1,15 @@
+h1 {
+	font-weight: bold;
+	color: red;
+	width: auto;
+	padding-top: 10px;
+	padding-left: 50px;	
+}
+
+h2 {
+	font-weight: bold;
+	color: blue;
+	width: auto;
+	padding-top: 10px;
+	padding-left: 50px;	
+}
