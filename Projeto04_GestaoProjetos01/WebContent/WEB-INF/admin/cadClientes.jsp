@@ -31,8 +31,18 @@
 					</div>
 					<div class="form-group">
 						<label for="txtTelefone">Telefone: </label> 
-						<input type="text" class="form-control" id="txtTelefone" name="txtTelefone">
+						<input type="text" class="form-control phone-mask" id="txtTelefone" name="txtTelefone" placeholder="(00) 0000-0000">
 					</div>
+
+					<div class="form-group">
+						<label for="txtUsuario">Usuário</label>
+						<select class="form-control" id="cmbUsuario" name="cmbUsuario">
+							<c:forEach var="user" items="${usuarios}">
+								<option value "${user.nome}"> ${user.nome} (${user.nivel}) </option>
+							</c:forEach>
+						</select>
+					</div>
+					
 					<button type="submit" class="btn btn-primary">Incluir Clientes</button>
 				
 					<c:if test="${resultado ne null }">

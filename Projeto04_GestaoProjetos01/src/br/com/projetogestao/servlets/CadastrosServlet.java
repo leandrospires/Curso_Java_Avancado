@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetogestao.jdbc.UsuariosDao;
 import br.com.projetogestao.models.Usuario;
+import br.com.projetogestao.repository.Repositorio;
 import br.com.projetogestao.utilities.Utils;
 
 @WebServlet("/admin/cadastro")
@@ -35,6 +36,7 @@ public class CadastrosServlet extends HttpServlet {
 					break;
 				case "c":
 					pagina += "cadClientes.jsp";
+					request.setAttribute("usuarios", Repositorio.getUsuariosDao().listar());
 					break;
 				case "p":
 					pagina += "cadPrestadores.jsp";
@@ -90,7 +92,7 @@ public class CadastrosServlet extends HttpServlet {
 		usuario.setSenha(senha);
 		usuario.setNivel(Utils.buscarNivel(nivel));
 
-		UsuariosDao dao = new UsuariosDao();
+		UsuariosDao dao = Repositorio.getUsuariosDao();
 		dao.incluir(usuario);
 
 		request.setAttribute("resultado", "Usuário incluído com sucesso!");
