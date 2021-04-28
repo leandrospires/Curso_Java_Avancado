@@ -1,0 +1,6 @@
+br\com\projetogestao\jdbc\UsuariosDao.class
+br\com\projetogestao\models\Usuario.class
+br\com\projetogestao\enumerations\Niveis.class
+br\com\projetogestao\utilities\Utils.class
+br\com\projetogestao\jdbc\Dao.class
+br\com\projetogestao\servlets\CadastrosServlet.class
