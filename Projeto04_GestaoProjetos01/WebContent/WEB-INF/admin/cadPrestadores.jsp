@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title></title>
+
+</head>
+<body>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ include file="cabecalho.jsp"%>
+
+	<div class="container">
+		<h2>Cadastro de Prestadores</h2>
+
+		<div class="row">
+			<div class="col-6">
+				<form action="cadastro" method="post">
+				
+					<input type="hidden" name="opcao" value="p">
+				
+					<div class="form-group">
+						<label for="txtNome">Nome: </label> 
+						<input type="text" class="form-control" id="txtNome" name="txtNome">
+					</div>
+					<div class="form-group">
+						<label for="txtEmail">Email: </label> 
+						<input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp" placeholder="nome@exemplo.com">
+						<small id="emailHelp" class="form-text text-muted">Digite seu e-mail.</small>
+					</div>
+					<div class="form-group">
+						<label for="txtTelefone">Telefone: </label> 
+						<input type="text" class="form-control phone-mask" id="txtTelefone" name="txtTelefone" placeholder="(00) 0000-0000">
+					</div>
+
+					<div class="form-group">
+						<label for="txtUsuario">Usuário</label>
+						<select class="form-control" id="cmbUsuario" name="cmbUsuario">
+							<c:forEach var="user" items="${usuarios}">
+								<option value "${user.nome}"> ${user.nome} (${user.nivel}) </option>
+							</c:forEach>
+						</select>
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Incluir Prestadores</button>
+				
+					<c:if test="${resultado ne null }">
+						<div class="alert alert-success" role="alert" style="margin-top: 10px;">
+						  ${resultado}
+						</div>				
+					</c:if>
+					
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

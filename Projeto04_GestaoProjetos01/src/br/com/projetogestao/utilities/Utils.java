@@ -2,8 +2,12 @@ package br.com.projetogestao.utilities;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 import br.com.projetogestao.enumerations.Niveis;
+import br.com.projetogestao.models.Usuario;
+import br.com.projetogestao.repository.Repositorio;
 
 public final class Utils {
 	
@@ -32,5 +36,18 @@ public final class Utils {
 		
 		return n;
 	}
+	
+	public static Collection<Usuario> listarUsuariosPorNivel (Niveis n) throws Exception {
+
+		// Utilizando lambda [->] - somente a partir do JAVA 8
+		Collection<Usuario> listaUsuarios = 
+				Repositorio.getUsuariosDao().listar()
+				.stream()
+				.filter(p -> p.getNivel() == n)
+				.collect(Collectors.toList());
+		
+		return listaUsuarios;
+		
+	}	
 
 }

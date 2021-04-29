@@ -1,4 +1,4 @@
-package br.com.projetogestao.jdbc;
+	package br.com.projetogestao.jdbc;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,7 +36,7 @@ public class UsuariosDao extends Dao<Usuario> {
 		
 		try {
 			abrirConexao();
-			String sql = "SELECT * FROM USUARIOS";
+			String sql = "SELECT * FROM usuarios";
 			stmt = cn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -59,7 +59,22 @@ public class UsuariosDao extends Dao<Usuario> {
 	}
 	@Override
 	public Usuario buscar(Object chave) throws Exception {
-		return null;
+		Usuario usuario = null;
+		
+		try {
+			if ( !(chave instanceof String) ) {
+				throw new Exception("Tipo de parâmetro inválido: deve ser uma String");
+			}
+
+			abrirConexao();
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			fecharConexao();
+		}
+		
+		return usuario;
 	}
 	
 	

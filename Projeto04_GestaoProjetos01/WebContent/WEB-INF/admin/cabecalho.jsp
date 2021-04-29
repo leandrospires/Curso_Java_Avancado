@@ -17,7 +17,7 @@
 
 			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=u">Cadastro de Usuários</a></li>
 			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=c">Cadastro de Clientes</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Cadastro de Prestadores</a></li>
+			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=p">Cadastro de Prestadores</a></li>
 
 		</ul>
 	</div>

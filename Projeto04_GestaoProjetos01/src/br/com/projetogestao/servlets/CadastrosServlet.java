@@ -1,6 +1,7 @@
 package br.com.projetogestao.servlets;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projetogestao.enumerations.Niveis;
 import br.com.projetogestao.jdbc.UsuariosDao;
 import br.com.projetogestao.models.Usuario;
 import br.com.projetogestao.repository.Repositorio;
@@ -28,18 +30,38 @@ public class CadastrosServlet extends HttpServlet {
 		try {
 
 			String pagina = "/WEB-INF/admin/";
+			Collection<Usuario> listaUsuarios;
 
 			if (opcao != null) {
 				switch (opcao) {
 				case "u":
 					pagina += "cadUsuarios.jsp";
 					break;
+
 				case "c":
 					pagina += "cadClientes.jsp";
-					request.setAttribute("usuarios", Repositorio.getUsuariosDao().listar());
+					listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.CLIENTE); 
+					
+					if ( listaUsuarios.size() == 0 ) {
+						throw new Exception("Não existem usuários com o nível esperado!");
+					}
+
+					request.setAttribute("usuarios",
+							listaUsuarios);
+					
 					break;
+
 				case "p":
 					pagina += "cadPrestadores.jsp";
+					listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.PREST);
+					
+					if ( listaUsuarios.size() == 0 ) {
+						throw new Exception("Não existem usuários com o nível esperado!");
+					}
+
+					request.setAttribute("usuarios",
+							listaUsuarios);					
+					
 					break;
 				default:
 					throw new Exception("Opção inválida: " + opcao);
