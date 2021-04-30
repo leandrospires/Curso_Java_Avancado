@@ -1,6 +1,7 @@
 package br.com.projetogestao.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetogestao.enumerations.Niveis;
 import br.com.projetogestao.jdbc.UsuariosDao;
+import br.com.projetogestao.models.Cliente;
 import br.com.projetogestao.models.Usuario;
 import br.com.projetogestao.repository.Repositorio;
 import br.com.projetogestao.utilities.Utils;
@@ -103,7 +105,8 @@ public class CadastrosServlet extends HttpServlet {
 		}
 	}
 
-	private void incluirUsuario(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private void incluirUsuario(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
 
 		String nome = request.getParameter("txtNome");
 		String senha = request.getParameter("txtSenha");
@@ -122,10 +125,25 @@ public class CadastrosServlet extends HttpServlet {
 
 	}
 	
-	private void incluirCliente(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		request.setAttribute("resultado", "Cliente incluído com sucesso!");
-		request.getRequestDispatcher("/WEB-INF/admin/cadClientes.jsp").forward(request, response);
+	private void incluirCliente(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		
+		String nome = request.getParameter("txtNome");
+		String email = request.getParameter("txtEmail");
+		String telefone = request.getParameter("txtTelefone");
+		String usuario = request.getParameter("cmbUsuario");
+		
+		Cliente cli = new Cliente();
+		cli.setNome(nome);
+		cli.setEmail(email);
+		cli.setTelefone(telefone);
+		cli.setUsuario(Repositorio.getUsuariosDao().buscar(usuario));
+		
+		Repositorio.getClientesDao().incluir(cli);
+		
+		request.setAttribute("listaClientes", Repositorio.getClientesDao().listar());
+		
+		request.getRequestDispatcher("/WEB-INF/admin/listaClientes.jsp").forward(request, response);
 	}
 
 }

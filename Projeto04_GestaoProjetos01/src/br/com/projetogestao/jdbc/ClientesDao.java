@@ -1,5 +1,6 @@
 package br.com.projetogestao.jdbc;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import br.com.projetogestao.models.Cliente;
@@ -28,7 +29,32 @@ public class ClientesDao extends Dao<Cliente>{
 
 	@Override
 	public Collection<Cliente> listar() throws Exception {
-		return null;
+		Collection<Cliente> clientes = new ArrayList<>();
+		
+		try {
+			abrirConexao();
+			String sql = "SELECT * FROM clientes";
+			stmt = cn.prepareStatement(sql);
+			
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Cliente c = new Cliente();
+				c.setId(rs.getInt("IDCLIENTE"));
+				c.setNome(rs.getString("NOME"));
+				c.setEmail(rs.getNString("EMAIL"));
+				c.setTelefone(rs.getString("TELEFONE"));
+				clientes.add(c);
+			}
+			
+		} catch (Exception e) {
+			throw e;
+			
+		} finally {
+			fecharConexao();
+		}
+		
+		return clientes;
 	}
 
 	@Override

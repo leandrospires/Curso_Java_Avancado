@@ -3,6 +3,7 @@ package br.com.projetogestao.utilities;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Collection;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import br.com.projetogestao.enumerations.Niveis;
@@ -40,14 +41,34 @@ public final class Utils {
 	public static Collection<Usuario> listarUsuariosPorNivel (Niveis n) throws Exception {
 
 		// Utilizando lambda [->] - somente a partir do JAVA 8
+		
 		Collection<Usuario> listaUsuarios = 
 				Repositorio.getUsuariosDao().listar()
 				.stream()
-				.filter(p -> p.getNivel() == n)
-				.collect(Collectors.toList());
+				.filter(p -> p.getNivel() == n).collect(Collectors.toList());
 		
 		return listaUsuarios;
 		
-	}	
+	}
+	
+	public static boolean possuiValor(final Object valor) {
+
+        boolean possuiValor = false;
+        if (valor != null) {
+            if (valor instanceof String || valor instanceof Character) {
+                possuiValor = !valor.toString().trim().equals("");
+            } else if (valor instanceof Collection<?>) {
+                possuiValor = !((Collection<?>) valor).isEmpty();
+            } else if (valor instanceof Map<?, ?>) {
+                possuiValor = !((Map<?, ?>) valor).isEmpty();
+
+            } else if (valor instanceof Object[]) {
+                possuiValor = ((Object[]) valor).length > 0;
+            } else {
+                possuiValor = true;
+            }
+        }
+        return possuiValor;
+    }	
 
 }

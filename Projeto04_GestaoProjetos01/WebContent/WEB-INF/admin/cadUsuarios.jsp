@@ -21,7 +21,7 @@
 					<input type="hidden" name="opcao" value="u">
 				
 					<div class="form-group">
-						<label for="txtNome">Nome: </label> 
+						<label for="txtNome">Matrícula: </label> 
 						<input type="text" class="form-control" id="txtNome" name="txtNome">
 					</div>
 

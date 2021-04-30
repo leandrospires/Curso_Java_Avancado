@@ -35,10 +35,10 @@
 					</div>
 
 					<div class="form-group">
-						<label for="txtUsuario">Usuário</label>
+						<label for="txtUsuario">Matrícula</label>
 						<select class="form-control" id="cmbUsuario" name="cmbUsuario">
 							<c:forEach var="user" items="${usuarios}">
-								<option value "${user.nome}"> ${user.nome} (${user.nivel}) </option>
+								<option value="${user.nome}"> ${user.nome} (${user.nivel}) </option>
 							</c:forEach>
 						</select>
 					</div>

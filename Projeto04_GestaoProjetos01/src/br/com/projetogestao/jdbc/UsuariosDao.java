@@ -57,6 +57,7 @@ public class UsuariosDao extends Dao<Usuario> {
 		
 		return usuarios;
 	}
+
 	@Override
 	public Usuario buscar(Object chave) throws Exception {
 		Usuario usuario = null;
@@ -67,6 +68,18 @@ public class UsuariosDao extends Dao<Usuario> {
 			}
 
 			abrirConexao();
+			String sql = "SELECT * FROM usuarios WHERE NOME = ?";
+			stmt = cn.prepareStatement(sql);
+			stmt.setString(1, (String)chave ); //typecast
+			
+			rs = stmt.executeQuery();
+			
+			if ( rs.next() ) {
+				usuario = new Usuario();
+				usuario.setNome(rs.getString("NOME"));
+				usuario.setSenha(rs.getString("SENHA"));
+				usuario.setNivel(Utils.buscarNivel(rs.getString("NIVEL")));				
+			}
 			
 		} catch (Exception e) {
 			throw e;
@@ -76,7 +89,5 @@ public class UsuariosDao extends Dao<Usuario> {
 		
 		return usuario;
 	}
-	
-	
 
 }
