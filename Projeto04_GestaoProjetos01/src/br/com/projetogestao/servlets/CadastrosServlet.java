@@ -1,7 +1,6 @@
 package br.com.projetogestao.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -16,6 +15,8 @@ import br.com.projetogestao.models.Cliente;
 import br.com.projetogestao.models.Usuario;
 import br.com.projetogestao.repository.Repositorio;
 import br.com.projetogestao.utilities.Utils;
+
+
 
 @WebServlet("/admin/cadastro")
 public class CadastrosServlet extends HttpServlet {
@@ -63,6 +64,13 @@ public class CadastrosServlet extends HttpServlet {
 
 					request.setAttribute("usuarios",
 							listaUsuarios);					
+					
+					break;
+					
+				case "ls":
+					pagina += "listaClientes.jsp";
+
+					request.setAttribute("listaClientes", Repositorio.getClientesDao().listar());
 					
 					break;
 				default:

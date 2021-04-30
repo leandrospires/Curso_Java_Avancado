@@ -14,7 +14,10 @@
 	<%@ include file="cabecalho.jsp"%>
 
 	<div class="container">
-		<h2>Lista de Clientes</h2>
+		<div style="padding: 10px;">
+			<h2>Lista de Clientes</h2>
+			<a class="btn btn-primary" href="cadastro?opcao=c" role="button">Incluir Cliente</a>
+		</div>
 		
 		<table class="table table-striped">
 			<thead>

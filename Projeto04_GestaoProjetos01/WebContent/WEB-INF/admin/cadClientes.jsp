@@ -43,7 +43,7 @@
 						</select>
 					</div>
 					
-					<button type="submit" class="btn btn-primary">Incluir Clientes</button>
+					<button type="submit" class="btn btn-primary">Incluir Cliente</button>
 				
 					<c:if test="${resultado ne null }">
 						<div class="alert alert-success" role="alert" style="margin-top: 10px;">
