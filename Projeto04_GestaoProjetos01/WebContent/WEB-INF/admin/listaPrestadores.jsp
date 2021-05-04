@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>Lista de Clientes</title>
+	<title>Lista de Prestadores</title>
 	
 
 	
@@ -15,27 +15,27 @@
 
 	<div class="container">
 		
-		<h2>Lista de Clientes</h2>
+		<h2>Lista de Prestadores</h2>
 		<div style="margin: 5px">
-			<a class="btn btn-primary" href="cadastro?opcao=c" role="button">Incluir Cliente</a>
+			<a class="btn btn-primary" href="cadastro?opcao=p" role="button">Incluir Prestador</a>
 		</div>
 		
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<th>DOCUMENTO</th>
 					<th>NOME</th>
 					<th>E-MAIL</th>
 					<th>TELEFONE</th>
 				</tr>
 				
 				<tboby>
-					<c:forEach var="cliente" items="${listaClientes}">
+					<c:forEach var="prestador" items="${listaPrestadores}">
 						<tr>
-							<td>${cliente.id}</td>
-							<td>${cliente.nome}</td>
-							<td>${cliente.email}</td>
-							<td>${cliente.telefone}</td>
+							<td>${prestador.documento.getNumero()}</td>
+							<td>${prestador.nome}</td>
+							<td>${prestador.email}</td>
+							<td>${prestador.telefone}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

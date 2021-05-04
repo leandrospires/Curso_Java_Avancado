@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title></title>
+	<title>Gestão de Projetos</title>
 	
 	
 </head>
@@ -12,7 +12,7 @@
 	<%@ include file="cabecalho.jsp"%>
 
 	<div class="container">
-		<h1>Bem vindao sistema de Gestão de Projetos</h1>
+		<h1>Bem vindos ao sistema de Gestão de Projetos</h1>
 	</div>
 </body>
 </html>

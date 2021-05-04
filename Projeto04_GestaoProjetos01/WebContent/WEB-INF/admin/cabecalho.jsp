@@ -14,11 +14,35 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav">
-
+			<!-- 
 			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=u">Cadastro de Usuários</a></li>
 			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=c">Cadastro de Clientes</a></li>
 			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=p">Cadastro de Prestadores</a></li>
-			<li class="nav-item"><a class="nav-link" href="cadastro?opcao=ls">Listar Clientes</a></li>
+			<li class="nav-item"><a class="nav-link" href="listaClientes">Listar Clientes</a></li>
+			<li class="nav-item"><a class="nav-link" href="listaPrestadores">Listar Prestadores</a></li>
+			 -->
+
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Cadastros
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="cadastro?opcao=u">Cadastro de Usuários</a>
+	          <a class="dropdown-item" href="cadastro?opcao=c">Cadastro de Clientes</a>
+	          <a class="dropdown-item" href="cadastro?opcao=p">Cadastro de Prestadores</a>
+	        </div>
+	      </li>
+	      
+	      	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Listas
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="listaClientes">Lista de Clientes</a>
+	          <a class="dropdown-item" href="listaPrestadores">Lista de Prestadores</a>
+	        </div>
+	      </li>
+	      
 
 		</ul>
 	</div>

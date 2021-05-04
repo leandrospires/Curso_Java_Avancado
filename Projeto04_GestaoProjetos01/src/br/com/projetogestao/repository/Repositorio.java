@@ -1,12 +1,14 @@
 package br.com.projetogestao.repository;
 
 import br.com.projetogestao.jdbc.ClientesDao;
+import br.com.projetogestao.jdbc.PrestadoresDao;
 import br.com.projetogestao.jdbc.UsuariosDao;
 
 public class Repositorio {
 	
 	static UsuariosDao usuarioDao;
 	static ClientesDao clientesDao;
+	static PrestadoresDao prestadoresDao;
 	
 	public static UsuariosDao getUsuariosDao() {
 		
@@ -26,4 +28,13 @@ public class Repositorio {
 		return clientesDao;
 	}	
 
+	public static PrestadoresDao getPrestadoressDao() {
+		
+		if (prestadoresDao == null) {
+			prestadoresDao = new PrestadoresDao();
+		}
+		
+		return prestadoresDao;
+	}	
+	
 }

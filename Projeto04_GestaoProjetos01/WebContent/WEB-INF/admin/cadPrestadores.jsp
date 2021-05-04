@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title></title>
+<title>Cadastro de Prestadores</title>
 
 </head>
 <body>
@@ -20,30 +20,50 @@
 				
 					<input type="hidden" name="opcao" value="p">
 				
-					<div class="form-group">
-						<label for="txtNome">Nome: </label> 
-						<input type="text" class="form-control" id="txtNome" name="txtNome">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="optDoc" id="optCpf" value="optCpf">
+						<label class="form-check-label" for="optCpf">CPF</label>
 					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="optDoc" id="optCnpj" value="optCnpj">
+						<label class="form-check-label" for="optCnpj">CNPJ</label>
+					</div>
+				
+				
+				
+					<div class="form-group">
+						<label for="txtDocumento">Documento: </label> 
+						<input type="text" class="form-control" id="txtDocumento" name="txtDocumento">
+					</div>
+					
+					<div class="form-group">
+						<label for="txtUsuario">Usuario: </label> 
+						<input type="text" class="form-control" id="txtNome" name="txtUsuario">
+					</div>
+				
+					<div class="form-group">
+						<label for="txtSenha">Senha: </label>
+						<input type="password" class="form-control" id="txtSenha" name="txtSenha">
+					</div>
+					
+					<div class="form-group">
+						<label for="txtnome">Nome: </label> 
+						<input type="text" class="form-control" id="txtnome" name="txtnome">
+					</div>
+					
 					<div class="form-group">
 						<label for="txtEmail">Email: </label> 
 						<input type="email" class="form-control" id="txtEmail" name="txtEmail" aria-describedby="emailHelp" placeholder="nome@exemplo.com">
 						<small id="emailHelp" class="form-text text-muted">Digite seu e-mail.</small>
 					</div>
+					
 					<div class="form-group">
 						<label for="txtTelefone">Telefone: </label> 
 						<input type="text" class="form-control phone-mask" id="txtTelefone" name="txtTelefone" placeholder="(00) 0000-0000">
 					</div>
 
-					<div class="form-group">
-						<label for="txtUsuario">Matrícula</label>
-						<select class="form-control" id="cmbUsuario" name="cmbUsuario">
-							<c:forEach var="user" items="${usuarios}">
-								<option value "${user.nome}"> ${user.nome} (${user.nivel}) </option>
-							</c:forEach>
-						</select>
-					</div>
 					
-					<button type="submit" class="btn btn-primary">Incluir Prestadores</button>
+					<button type="submit" class="btn btn-primary">Incluir Prestador</button>
 				
 					<c:if test="${resultado ne null }">
 						<div class="alert alert-success" role="alert" style="margin-top: 10px;">

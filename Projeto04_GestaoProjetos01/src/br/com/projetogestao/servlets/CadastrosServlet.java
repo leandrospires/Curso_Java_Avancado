@@ -10,15 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projetogestao.enumerations.Niveis;
+import br.com.projetogestao.interfaces.iDocumento;
 import br.com.projetogestao.jdbc.UsuariosDao;
 import br.com.projetogestao.models.Cliente;
+import br.com.projetogestao.models.DocumentoCnpj;
+import br.com.projetogestao.models.DocumentoCpf;
+import br.com.projetogestao.models.Prestador;
 import br.com.projetogestao.models.Usuario;
 import br.com.projetogestao.repository.Repositorio;
 import br.com.projetogestao.utilities.Utils;
 
-
-
-@WebServlet("/admin/cadastro")
+@WebServlet(
+		urlPatterns = {
+				"/admin/cadastro", 
+				"/admin/listaClientes",
+				"/admin/listaPrestadores"
+			})
 public class CadastrosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,67 +35,93 @@ public class CadastrosServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String opcao = request.getParameter("opcao");
+		
+		
+		//System.out.println("getServletPath: " + request.getServletPath());
 
-		try {
+		if ( request.getServletPath().equals("/admin/cadastro") ) 
+		{
+			String opcao = request.getParameter("opcao");
+			try {
 
-			String pagina = "/WEB-INF/admin/";
-			Collection<Usuario> listaUsuarios;
+				String pagina = "/WEB-INF/admin/";
+				Collection<Usuario> listaUsuarios;
 
-			if (opcao != null) {
-				switch (opcao) {
-				case "u":
-					pagina += "cadUsuarios.jsp";
-					break;
+				if (opcao != null) {
+					switch (opcao) {
+					case "u":
+						pagina += "cadUsuarios.jsp";
+						break;
 
-				case "c":
-					pagina += "cadClientes.jsp";
-					listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.CLIENTE); 
-					
-					if ( listaUsuarios.size() == 0 ) {
-						throw new Exception("Não existem usuários com o nível esperado!");
+					case "c":
+						pagina += "cadClientes.jsp";
+						listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.CLIENTE);
+
+						if (listaUsuarios.size() == 0) {
+							throw new Exception("Não existem usuários com o nível esperado!");
+						}
+
+						request.setAttribute("usuarios", listaUsuarios);
+
+						break;
+
+					case "p":
+						pagina += "cadPrestadores.jsp";
+						/*
+						listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.PREST);
+
+						if (listaUsuarios.size() == 0) {
+							throw new Exception("Não existem usuários com o nível esperado!");
+						}
+
+						request.setAttribute("usuarios", listaUsuarios);
+						*/
+
+						break;
+					default:
+						throw new Exception("Opção inválida: " + opcao);
 					}
 
-					request.setAttribute("usuarios",
-							listaUsuarios);
-					
-					break;
+					request.getRequestDispatcher(pagina).forward(request, response);
 
-				case "p":
-					pagina += "cadPrestadores.jsp";
-					listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.PREST);
-					
-					if ( listaUsuarios.size() == 0 ) {
-						throw new Exception("Não existem usuários com o nível esperado!");
-					}
-
-					request.setAttribute("usuarios",
-							listaUsuarios);					
-					
-					break;
-					
-				case "ls":
-					pagina += "listaClientes.jsp";
-
-					request.setAttribute("listaClientes", Repositorio.getClientesDao().listar());
-					
-					break;
-				default:
-					throw new Exception("Opção inválida: " + opcao);
+				} else {
+					pagina += "home.jsp";
+					request.getRequestDispatcher(pagina).forward(request, response);
+					// throw new Exception("Recurso usado incorretamente!");
 				}
 
-				request.getRequestDispatcher(pagina).forward(request, response);
+			} catch (Exception e) {
+				request.setAttribute("mensagemErro", e.getMessage());
+				request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+			} 
 
-			} else {
-				pagina += "home.jsp";
-				request.getRequestDispatcher(pagina).forward(request, response);
-				// throw new Exception("Recurso usado incorretamente!");
+		} else if (request.getServletPath().equals("/admin/listaClientes") ) {
+			
+			try {
+				
+				request.setAttribute("listaClientes", Repositorio.getClientesDao().listar());
+				request.getRequestDispatcher("/WEB-INF/admin/listaClientes.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				
+				request.setAttribute("mensagemErro", e.getMessage());
+				request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+				
 			}
-
-		} catch (Exception e) {
-			request.setAttribute("mensagemErro", e.getMessage());
-			request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+		} else if (request.getServletPath().equals("/admin/listaPrestadores") ){
+			try {
+				
+				request.setAttribute("listaPrestadores", Repositorio.getPrestadoressDao().listar());
+				request.getRequestDispatcher("/WEB-INF/admin/listaPrestadores.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				
+				request.setAttribute("mensagemErro", e.getMessage());
+				request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+				
+			}
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -103,7 +136,11 @@ public class CadastrosServlet extends HttpServlet {
 				
 			case "c":
 				incluirCliente(request, response);
-				break;				
+				break;
+				
+			case "p":
+				incluirPrestador(request, response);
+				break;
 
 			}
 
@@ -152,6 +189,62 @@ public class CadastrosServlet extends HttpServlet {
 		request.setAttribute("listaClientes", Repositorio.getClientesDao().listar());
 		
 		request.getRequestDispatcher("/WEB-INF/admin/listaClientes.jsp").forward(request, response);
+	}
+	
+	private void incluirPrestador(HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		
+		try {
+			String tipoDoc = request.getParameter("optDoc");
+			
+			String documento = request.getParameter("txtDocumento");
+			String usuario = request.getParameter("txtUsuario");
+			String senha = request.getParameter("txtSenha");
+			String nome = request.getParameter("txtnome");
+			String email = request.getParameter("txtEmail");
+			String telefone = request.getParameter("txtTelefone");
+			
+			Prestador pre = new Prestador();
+			Usuario usu = new Usuario();
+			
+			iDocumento docCpf = new DocumentoCpf();
+			iDocumento docCnpj = new DocumentoCnpj();
+
+			if (tipoDoc == null) {
+				request.setAttribute("mensagemErro", "Seleção do tipo de documento obrigatório!");
+				request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+				return;
+			} else if (tipoDoc.equals("optCpf")) {
+				docCpf.setNumero(documento);
+				pre.setDocumento(docCpf);
+			} else if (tipoDoc.equals("optCnpj")) {
+				docCnpj.setNumero(documento);
+				pre.setDocumento(docCnpj);
+			}
+			
+			usu.setNome(usuario);
+			usu.setSenha(senha);
+			usu.setNivel(Niveis.PREST);
+			
+
+			pre.setUsuario(usu);
+			pre.setEmail(email);
+			pre.setNome(nome);
+			pre.setTelefone(telefone);
+			
+			
+			Repositorio.getPrestadoressDao().setSenha(usu.getSenha());
+			Repositorio.getPrestadoressDao().incluir(pre);
+			
+			request.setAttribute("listaPrestadores", Repositorio.getPrestadoressDao().listar());
+			request.getRequestDispatcher("/WEB-INF/admin/listaPrestadores.jsp").forward(request, response);
+			
+
+		} catch (Exception e) {
+			request.setAttribute("mensagemErro", e.getMessage());
+			request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+		}	
+		
 	}
 
 }

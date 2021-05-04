@@ -10,3 +10,10 @@ https://meet.google.com/eyz-frse-rcx
 Docs Compartilhados
 https://onedrive.live.com/?id=A1AB4E95CE03654A%2155977&cid=A1AB4E95CE03654A
 
+
+
+Regex (Expressões Regulares):
+
+https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+https://aurelio.net/regex/guia/
+

@@ -29,6 +29,7 @@ public class ClientesDao extends Dao<Cliente>{
 
 	@Override
 	public Collection<Cliente> listar() throws Exception {
+		
 		Collection<Cliente> clientes = new ArrayList<>();
 		
 		try {
