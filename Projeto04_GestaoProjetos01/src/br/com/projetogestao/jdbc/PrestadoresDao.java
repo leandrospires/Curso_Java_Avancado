@@ -8,6 +8,7 @@ import br.com.projetogestao.interfaces.iDocumento;
 import br.com.projetogestao.models.DocumentoCnpj;
 import br.com.projetogestao.models.DocumentoCpf;
 import br.com.projetogestao.models.Prestador;
+import br.com.projetogestao.utilities.Utils;
 
 public class PrestadoresDao extends Dao<Prestador>{
 
@@ -31,7 +32,7 @@ public class PrestadoresDao extends Dao<Prestador>{
 			cstmt.setString(3, item.getNome());
 			cstmt.setString(4, item.getEmail());
 			cstmt.setString(5, item.getTelefone());
-			cstmt.setString(6, this.senha);
+			cstmt.setString(6, Utils.verificarMD5(this.senha) );
 			
 			cstmt.execute();
 			
@@ -93,6 +94,11 @@ public class PrestadoresDao extends Dao<Prestador>{
 	@Override
 	public Prestador buscar(Object chave) throws Exception {
 		return null;
+	}
+
+	@Override
+	public void excluir(String id) throws Exception {
+		
 	}
 
 }

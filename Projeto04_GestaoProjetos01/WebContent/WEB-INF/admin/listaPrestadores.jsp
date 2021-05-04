@@ -32,7 +32,7 @@
 				<tboby>
 					<c:forEach var="prestador" items="${listaPrestadores}">
 						<tr>
-							<td>${prestador.documento.getNumero()}</td>
+							<td>${prestador.documento.numero}</td>
 							<td>${prestador.nome}</td>
 							<td>${prestador.email}</td>
 							<td>${prestador.telefone}</td>

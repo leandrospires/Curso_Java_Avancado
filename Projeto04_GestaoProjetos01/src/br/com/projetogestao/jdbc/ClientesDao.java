@@ -63,4 +63,22 @@ public class ClientesDao extends Dao<Cliente>{
 		return null;
 	}
 
+	@Override
+	public void excluir(String id) throws Exception {
+		try {
+			abrirConexao();
+			
+			String sql = "DELETE FROM clientes WHERE IDCLIENTE = ?";
+			stmt = cn.prepareStatement(sql);
+			stmt.setString(1, id);
+			
+			stmt.executeUpdate();			
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			fecharConexao();
+		}
+	}
+
 }

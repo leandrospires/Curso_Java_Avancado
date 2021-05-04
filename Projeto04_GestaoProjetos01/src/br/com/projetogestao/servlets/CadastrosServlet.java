@@ -24,7 +24,8 @@ import br.com.projetogestao.utilities.Utils;
 		urlPatterns = {
 				"/admin/cadastro", 
 				"/admin/listaClientes",
-				"/admin/listaPrestadores"
+				"/admin/listaPrestadores",
+				"/admin/excluir"
 			})
 public class CadastrosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -67,15 +68,6 @@ public class CadastrosServlet extends HttpServlet {
 
 					case "p":
 						pagina += "cadPrestadores.jsp";
-						/*
-						listaUsuarios = Utils.listarUsuariosPorNivel(Niveis.PREST);
-
-						if (listaUsuarios.size() == 0) {
-							throw new Exception("Não existem usuários com o nível esperado!");
-						}
-
-						request.setAttribute("usuarios", listaUsuarios);
-						*/
 
 						break;
 					default:
@@ -120,6 +112,23 @@ public class CadastrosServlet extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
 				
 			}
+		} else if (request.getServletPath().equals("/admin/excluir") ){
+			String opcao = request.getParameter("opcao");
+			String id = request.getParameter("id");
+			
+			try {
+				if (opcao != null) {
+					switch (opcao) {
+					case "c":
+						excluirCliente(id, request, response);
+						break;
+					}
+				}
+			} catch (Exception e) {
+				request.setAttribute("mensagemErro", e.getMessage());
+				request.getRequestDispatcher("/WEB-INF/admin/erro.jsp").forward(request, response);
+			}
+			
 		}
 		
 	}
@@ -168,6 +177,19 @@ public class CadastrosServlet extends HttpServlet {
 		request.setAttribute("resultado", "Usuário incluído com sucesso!");
 		request.getRequestDispatcher("/WEB-INF/admin/cadUsuarios.jsp").forward(request, response);
 
+	}
+	
+	private void excluirCliente(String id, HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		
+		String idCliente = id;
+		
+		Repositorio.getClientesDao().excluir(idCliente);
+		
+		request.setAttribute("listaClientes", Repositorio.getClientesDao().listar());
+		
+		request.getRequestDispatcher("/WEB-INF/admin/listaClientes.jsp").forward(request, response);		
+		
 	}
 	
 	private void incluirCliente(HttpServletRequest request, 

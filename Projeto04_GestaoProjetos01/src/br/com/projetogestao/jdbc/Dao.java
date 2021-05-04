@@ -33,6 +33,8 @@ public abstract class Dao<T> {
 	
 	public abstract void incluir(T item) throws Exception;
 	
+	public abstract void excluir(String id) throws Exception;
+	
 	public abstract Collection<T> listar() throws Exception;
 	
 	public abstract T buscar(Object chave) throws Exception;

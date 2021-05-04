@@ -90,4 +90,9 @@ public class UsuariosDao extends Dao<Usuario> {
 		return usuario;
 	}
 
+	@Override
+	public void excluir(String id) throws Exception {
+		
+	}
+
 }
