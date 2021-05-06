@@ -28,7 +28,7 @@ public class Repositorio {
 		return clientesDao;
 	}	
 
-	public static PrestadoresDao getPrestadoressDao() {
+	public static PrestadoresDao getPrestadoresDao() {
 		
 		if (prestadoresDao == null) {
 			prestadoresDao = new PrestadoresDao();

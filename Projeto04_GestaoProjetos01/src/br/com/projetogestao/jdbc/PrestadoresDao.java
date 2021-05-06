@@ -98,7 +98,26 @@ public class PrestadoresDao extends Dao<Prestador>{
 
 	@Override
 	public void excluir(String id) throws Exception {
-		
+		try {
+			abrirConexao();
+			
+			String sql = "DELETE FROM prestadores WHERE DOCUMENTO = ?";
+			stmt = cn.prepareStatement(sql);
+			stmt.setString(1, id);
+			
+			stmt.executeUpdate();	
+			
+			sql = "DELETE FROM usuarios WHERE NOME = ?";
+			stmt = cn.prepareStatement(sql);
+			stmt.setString(1, id);
+			
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			fecharConexao();
+		}
 	}
 
 }

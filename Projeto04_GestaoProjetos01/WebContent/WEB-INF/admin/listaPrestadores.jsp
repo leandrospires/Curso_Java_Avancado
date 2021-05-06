@@ -27,6 +27,7 @@
 					<th>NOME</th>
 					<th>E-MAIL</th>
 					<th>TELEFONE</th>
+					<th></th>
 				</tr>
 				
 				<tboby>
@@ -36,6 +37,10 @@
 							<td>${prestador.nome}</td>
 							<td>${prestador.email}</td>
 							<td>${prestador.telefone}</td>
+							<td>
+								<a class="btn btn-danger" href="excluir?opcao=p&id=${prestador.documento.numero}"
+									 role="button">x</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

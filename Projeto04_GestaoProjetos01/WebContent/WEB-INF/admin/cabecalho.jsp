@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -41,9 +40,12 @@
 	          <a class="dropdown-item" href="listaClientes">Lista de Clientes</a>
 	          <a class="dropdown-item" href="listaPrestadores">Lista de Prestadores</a>
 	        </div>
+	        
 	      </li>
-	      
-
 		</ul>
 	</div>
+	<li class="nav-item text-right text-white">
+		Olá ${sessionScope.session_usuario.nome} | <a href=<c:url value="/login" />>Logout</a>
+	</li>	
 </nav>
+

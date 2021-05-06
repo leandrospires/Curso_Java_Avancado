@@ -8,6 +8,35 @@ import br.com.projetogestao.utilities.Utils;
 
 public class UsuariosDao extends Dao<Usuario> {
 
+	public Usuario validar(String nome, String senha) throws Exception {
+		Usuario usuario = null;
+		
+		try {
+
+			abrirConexao();
+			String sql = "SELECT * FROM usuarios WHERE NOME = ? AND SENHA = ?";
+			stmt = cn.prepareStatement(sql);
+			stmt.setString(1, nome );
+			stmt.setString(2, Utils.verificarMD5(senha) );
+			
+			rs = stmt.executeQuery();
+			
+			if ( rs.next() ) {
+				usuario = new Usuario();
+				usuario.setNome(rs.getString("NOME"));
+				usuario.setSenha(rs.getString("SENHA"));
+				usuario.setNivel(Utils.buscarNivel(rs.getString("NIVEL")));				
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			fecharConexao();
+		}
+		
+		return usuario;
+	}
+	
 	@Override
 	public void incluir(Usuario item) throws Exception {
 		try {

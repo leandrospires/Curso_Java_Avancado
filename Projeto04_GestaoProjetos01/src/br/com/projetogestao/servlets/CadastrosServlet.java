@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.projetogestao.enumerations.Niveis;
 import br.com.projetogestao.interfaces.iDocumento;
@@ -37,6 +38,15 @@ public class CadastrosServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		/* IMPLEMENTAÇÃO DO LOGINFILTER */
+		/*
+		HttpSession session = request.getSession();
+		Usuario usuario = (Usuario)session.getAttribute("session_usuario");
+		
+		if (usuario == null) {
+			response.sendRedirect(request.getContextPath() + "/login.jsp");
+			return;
+		}*/
 		
 		//System.out.println("getServletPath: " + request.getServletPath());
 
@@ -103,7 +113,7 @@ public class CadastrosServlet extends HttpServlet {
 		} else if (request.getServletPath().equals("/admin/listaPrestadores") ){
 			try {
 				
-				request.setAttribute("listaPrestadores", Repositorio.getPrestadoressDao().listar());
+				request.setAttribute("listaPrestadores", Repositorio.getPrestadoresDao().listar());
 				request.getRequestDispatcher("/WEB-INF/admin/listaPrestadores.jsp").forward(request, response);
 				
 			} catch (Exception e) {
@@ -122,7 +132,11 @@ public class CadastrosServlet extends HttpServlet {
 					case "c":
 						excluirCliente(id, request, response);
 						break;
+					case "p":
+						excluirPrestador(id, request, response);
+						break;
 					}
+
 				}
 			} catch (Exception e) {
 				request.setAttribute("mensagemErro", e.getMessage());
@@ -191,6 +205,17 @@ public class CadastrosServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/admin/listaClientes.jsp").forward(request, response);		
 		
 	}
+	private void excluirPrestador(String id, HttpServletRequest request, 
+			HttpServletResponse response) throws Exception {
+		
+			String docNumero = id;
+			
+			Repositorio.getPrestadoresDao().excluir(docNumero);
+			
+			request.setAttribute("listaPrestadores", Repositorio.getPrestadoresDao().listar());
+			
+			request.getRequestDispatcher("/WEB-INF/admin/listaPrestadores.jsp").forward(request, response);
+	}
 	
 	private void incluirCliente(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {
@@ -255,10 +280,10 @@ public class CadastrosServlet extends HttpServlet {
 			pre.setTelefone(telefone);
 			
 			
-			Repositorio.getPrestadoressDao().setSenha(usu.getSenha());
-			Repositorio.getPrestadoressDao().incluir(pre);
+			Repositorio.getPrestadoresDao().setSenha(usu.getSenha());
+			Repositorio.getPrestadoresDao().incluir(pre);
 			
-			request.setAttribute("listaPrestadores", Repositorio.getPrestadoressDao().listar());
+			request.setAttribute("listaPrestadores", Repositorio.getPrestadoresDao().listar());
 			request.getRequestDispatcher("/WEB-INF/admin/listaPrestadores.jsp").forward(request, response);
 			
 

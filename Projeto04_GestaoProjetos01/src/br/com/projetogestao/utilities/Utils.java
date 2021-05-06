@@ -1,8 +1,11 @@
 package br.com.projetogestao.utilities;
 
+import java.io.FileWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -69,6 +72,24 @@ public final class Utils {
             }
         }
         return possuiValor;
-    }	
+    }
+	
+	public static void gerarLog(String texto) {
+		try {
+			FileWriter writer = new FileWriter(
+					"E:\\LeandroPires\\Curso_Java_Avancado\\logs\\logs.log",true);
+			
+			String dataAtual = new 
+					SimpleDateFormat("dd/MM/yyyy - HH:mm").format(new Date());
+			
+			String linha = "[" + dataAtual + "] " + texto + "\r\n";
+			
+			writer.write(linha);
+			writer.close();
+					
+		} catch (Exception e) {
+			
+		}
+	}
 
 }
