@@ -34,7 +34,7 @@ public class AplicacaoListener implements
     public void attributeRemoved(ServletRequestAttributeEvent srae)  { 
     	
     	if (srae.getServletRequest().getAttributeNames().hasMoreElements()) {
-    		String atr = srae.getServletRequest().getAttributeNames().nextElement();
+    		String atr = (String)srae.getServletRequest().getAttributeNames().nextElement();
     		Utils.gerarLog("Atributo removido ao request: " + atr);
     	} else {
     		Utils.gerarLog("Atributo removido request");
@@ -48,7 +48,7 @@ public class AplicacaoListener implements
 
     public void attributeAdded(ServletRequestAttributeEvent srae)  { 
     	if (srae.getServletRequest().getAttributeNames().hasMoreElements()) {
-    		String atr = srae.getServletRequest().getAttributeNames().nextElement();
+    		String atr = (String)srae.getServletRequest().getAttributeNames().nextElement();
     		Utils.gerarLog("Atributo adicionado ao request: " + atr);
     	} else {
     		Utils.gerarLog("Atributo adicionado request");
@@ -60,7 +60,7 @@ public class AplicacaoListener implements
 
     public void attributeAdded(HttpSessionBindingEvent event)  { 
     	if (event.getSession().getAttributeNames().hasMoreElements()) {
-        	String atr = event.getSession().getAttributeNames().nextElement();
+        	String atr = (String)event.getSession().getAttributeNames().nextElement();
         	Usuario usu = (Usuario) event.getSession().getAttribute(atr);
         	
         	Utils.gerarLog("Atributo adicionado à sessão: " + atr
@@ -74,7 +74,7 @@ public class AplicacaoListener implements
 
     public void attributeRemoved(HttpSessionBindingEvent event)  {
     	if (event.getSession().getAttributeNames().hasMoreElements()) {
-        	String atr = event.getSession().getAttributeNames().nextElement();
+        	String atr = (String)event.getSession().getAttributeNames().nextElement();
         	Utils.gerarLog("Atributo removido à sessão: " + atr);    		
     	} else {
     		Utils.gerarLog("Atributo removido sessão");
@@ -83,7 +83,7 @@ public class AplicacaoListener implements
     }
 
     public void attributeReplaced(HttpSessionBindingEvent event)  { 
-    	String atr = event.getSession().getAttributeNames().nextElement();
+    	String atr = (String)event.getSession().getAttributeNames().nextElement();
     	
     	Utils.gerarLog("Atributo substituído da sessão: " + atr);     	
     }

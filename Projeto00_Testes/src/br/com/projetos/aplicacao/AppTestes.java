@@ -1,6 +1,7 @@
+package br.com.projetos.aplicacao;
 import java.io.IOException;
 
-public class Main {
+public class AppTestes {
 
 	public static void main(String[] args) {
 		

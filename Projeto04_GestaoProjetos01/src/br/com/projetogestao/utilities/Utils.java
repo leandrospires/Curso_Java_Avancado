@@ -76,8 +76,13 @@ public final class Utils {
 	
 	public static void gerarLog(String texto) {
 		try {
+			String caminhoLog;
+			
+			//caminhoLog = "E:\\LeandroPires\\Curso_Java_Avancado\\logs\\logs.log";
+			caminhoLog = "/opt/tomcat/logs/gestao_1.log";
+			
 			FileWriter writer = new FileWriter(
-					"E:\\LeandroPires\\Curso_Java_Avancado\\logs\\logs.log",true);
+					caminhoLog,true);
 			
 			String dataAtual = new 
 					SimpleDateFormat("dd/MM/yyyy - HH:mm").format(new Date());
@@ -88,7 +93,7 @@ public final class Utils {
 			writer.close();
 					
 		} catch (Exception e) {
-			
+			System.out.println(e.getMessage());
 		}
 	}
 
