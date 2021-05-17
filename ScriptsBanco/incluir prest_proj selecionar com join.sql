@@ -35,3 +35,8 @@ SELECT 	P1.DOCUMENTO,
   from clientes c , projetos p
  where c.IDCLIENTE = p.IDCLIENTE 
  group by c.NOME , c.TELEFONE  
+ 
+select c.NOME , c.TELEFONE, count(p.DESCRICAO) TOTAL 
+  from clientes c , projetos p
+ where c.IDCLIENTE = p.IDCLIENTE 
+ group by c.NOME , c.TELEFONE  
