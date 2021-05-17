@@ -1,6 +1,9 @@
 package br.com.projetos.aplicacao;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 public class ManipuladorProperties {
 
@@ -24,7 +27,14 @@ public class ManipuladorProperties {
 		tn = prop.getProperty("tela.nome");
 
 		System.out.println("tc = " + tc);
-		System.out.println("tn = " + tn);		
+		System.out.println("tn = " + tn);
+		System.out.println("Data = " + LocalDateTime.now());
+		
+		Date hoje = new Date();
+		Calendar cd = Calendar.getInstance();
+		cd.setTime(hoje);
+		
+		System.out.println("hoje: " + hoje);
 	}
 	
 

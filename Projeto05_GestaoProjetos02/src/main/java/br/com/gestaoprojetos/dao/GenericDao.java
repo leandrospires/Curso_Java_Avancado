@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.com.gestaoprojetos.entities.Projeto;
+
 public class GenericDao<T> implements Dao<T> {
 
 	private final Class<T> classe;
@@ -40,6 +42,5 @@ public class GenericDao<T> implements Dao<T> {
 		em.getTransaction().commit();
 		return item;
 	}
-	
 
 }
