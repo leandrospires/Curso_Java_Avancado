@@ -31,9 +31,6 @@ public class ManipuladorProperties {
 		System.out.println("Data = " + LocalDateTime.now());
 		
 		Date hoje = new Date();
-		Calendar cd = Calendar.getInstance();
-		cd.setTime(hoje);
-		
 		System.out.println("hoje: " + hoje);
 	}
 	
