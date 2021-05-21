@@ -5,7 +5,9 @@ public class Produto {
 	private String descricao;
 	private String unidade;
 	private double preco;
-	private Categoria categoria;
+	private int categoria;
+	
+	public Produto() {}
 	
 	private byte[] imagem;
 
@@ -33,10 +35,10 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	public Categoria getCategoria() {
+	public int getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(int categoria) {
 		this.categoria = categoria;
 	}
 	public byte[] getImagem() {

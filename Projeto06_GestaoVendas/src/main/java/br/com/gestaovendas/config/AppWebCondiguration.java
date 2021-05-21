@@ -46,6 +46,7 @@ public class AppWebCondiguration {
 		
 	}
 	
+	@Bean
 	public ProdutosDao getProdutosDao() {
 
 		return new ProdutosDao(getDataSource());

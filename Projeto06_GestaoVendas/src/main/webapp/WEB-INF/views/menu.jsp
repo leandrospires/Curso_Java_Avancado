@@ -20,8 +20,13 @@
 			</li>
 			<li>
 				<a href=<c:url value="/clientes/lista" />>Lista de Clientes</a>
+			</li>
+			<li>
+				<a href=<c:url value="/produtos/cadastro" />>Cadastro de Produtos</a>
+			</li>
+			<li>
+				<a href=<c:url value="/produtos/lista" />>Lista de Produtos</a>
 			</li>			
-
 				
 		</ul>
 	</div>

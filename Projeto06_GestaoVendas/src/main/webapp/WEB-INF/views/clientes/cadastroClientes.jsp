@@ -15,7 +15,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="row-6">
+			
 				<h2>Cadastro de Clientes</h2>
+				
 				<form:form action="/Projeto06_GestaoVendas/cadcliente" method="post" modelAttribute="cliente">
 					<div class="form-group">
 						<form:label path="documento">Documento:</form:label>
