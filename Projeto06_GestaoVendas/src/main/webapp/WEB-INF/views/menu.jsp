@@ -27,7 +27,9 @@
 			<li>
 				<a href=<c:url value="/produtos/lista" />>Lista de Produtos</a>
 			</li>			
-				
+			<li>
+				<a href=<c:url value="/pedidos/cadastro" />>Incluir Pedidos</a>
+			</li>
 		</ul>
 	</div>
 </body>

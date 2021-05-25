@@ -1,4 +1,5 @@
 package br.com.projetos.aplicacao;
+
 import java.io.IOException;
 
 public class AppTestes {
@@ -16,8 +17,10 @@ public class AppTestes {
 		}
 		
 		
+		
 		try {
 			ManipuladorProperties.exibeValores();
+			ManipuladorProperties.testarParametroOpcional(null);
 			
 		} catch (IOException e) {
 			

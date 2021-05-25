@@ -48,7 +48,7 @@ public class ProdutosController {
 			
 			produtosDao.incluir(pro);
 
-			return "menu";				
+			return "redirect:/produtos/lista";				
 
 		} catch (Exception e) {
 			model.addAttribute("erro", e.getMessage());

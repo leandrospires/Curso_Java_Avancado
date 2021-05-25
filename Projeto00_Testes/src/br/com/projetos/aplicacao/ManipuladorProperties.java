@@ -2,8 +2,8 @@ package br.com.projetos.aplicacao;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Properties;
 public class ManipuladorProperties {
 
@@ -34,5 +34,11 @@ public class ManipuladorProperties {
 		System.out.println("hoje: " + hoje);
 	}
 	
-
+	public static void testarParametroOpcional (Optional<String> texto) {
+		
+		if (texto.isPresent()) {
+			System.out.println(texto.get());
+		}	
+	
+	}
 }

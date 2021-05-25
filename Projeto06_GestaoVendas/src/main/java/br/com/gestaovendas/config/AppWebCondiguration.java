@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.gestaovendas.dao.ClientesDao;
+import br.com.gestaovendas.dao.PedidosDao;
 import br.com.gestaovendas.dao.ProdutosDao;
 
 @EnableWebMvc
@@ -50,6 +51,13 @@ public class AppWebCondiguration {
 	public ProdutosDao getProdutosDao() {
 
 		return new ProdutosDao(getDataSource());
+		
+	}
+	
+	@Bean
+	public PedidosDao getPedidosDao() {
+		
+		return new PedidosDao(getDataSource());
 		
 	}
 	
