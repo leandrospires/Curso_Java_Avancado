@@ -16,7 +16,8 @@
 		<div class="row">
 			<div class="row-6">
 				<h2>Alteração de Clientes</h2>
-				<form:form action="/Projeto06_GestaoVendas/alteracliente" method="post" modelAttribute="cliente">
+				<c:url var="post_url"  value="/alteracliente" />
+				<form:form action="${post_url}" method="post" modelAttribute="cliente">
 					<div class="form-group">
 						<form:label path="documento">Documento:</form:label>
 						<form:input path="documento" readonly="true" cssClass="form-control" />
@@ -41,7 +42,7 @@
 						<form:errors path="email" cssClass="text-danger"/>
 					</div>
 					
-					<button type="submit" class="btn btn-primary">Alterar Cliente</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
 												
 				</form:form>
 			</div>

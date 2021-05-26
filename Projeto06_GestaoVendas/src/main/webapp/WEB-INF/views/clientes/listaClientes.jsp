@@ -83,7 +83,9 @@
 				});
 			
 			$('#btnRemover').click(function(){
-				var url = "http://localhost:11565/Projeto06_GestaoVendas/clientes/remocao/" + id;
+// 				var url = "http://localhost:11565/Projeto06_GestaoVendas/clientes/remocao/" + id;
+				var ctx = "${pageContext.request.contextPath}";
+				var url = ctx + "/clientes/remocao/" + id;
 				
 				$(location).attr('href', url);
 			});

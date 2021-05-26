@@ -13,6 +13,9 @@
 <body>
 	<%@ include file="/WEB-INF/comuns/cabecalho.jsp"%>
 	<div class="container">
+		<div style="margin: 5px">
+			<a class="btn btn-primary" href=<c:url value = "/" /> role="button">Voltar</a>
+		</div>		
 		<h2>Cadastro de Pedidos por Cliente</h2>
 		
 		<div class="row">
@@ -94,7 +97,9 @@
 		$(document).ready(function(){
 			$('#documento').change(function(){
 				let doc = $(this).val();
-				let url = 'http://localhost:11565/Projeto06_GestaoVendas/pedidos/cadastro'; 
+				var ctx = "${pageContext.request.contextPath}";
+				let url = ctx + '/pedidos/cadastro'; 
+// 				let url = 'http://localhost:11565/Projeto06_GestaoVendas/pedidos/cadastro'; 
 				
 				if (doc != '0') {
 					url += '?doc=' + doc

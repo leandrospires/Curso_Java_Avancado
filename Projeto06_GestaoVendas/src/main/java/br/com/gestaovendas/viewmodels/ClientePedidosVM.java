@@ -40,6 +40,4 @@ public class ClientePedidosVM {
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
 	}
-	
-	
 }

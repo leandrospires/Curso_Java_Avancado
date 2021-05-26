@@ -14,7 +14,7 @@ public class ClientePedidosMapper implements RowMapper<ClientePedidosVM>{
 
 		ClientePedidosVM vm = new ClientePedidosVM();
 		
-		vm.setIdPedido(rs.getInt("idPedido"));
+		vm.setIdPedido(rs.getInt("id"));
 		vm.setPedido(rs.getString("pedido"));
 		vm.setData(rs.getDate("data"));
 		vm.setCliente(rs.getString("cliente"));

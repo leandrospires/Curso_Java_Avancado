@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.gestaovendas.dao.ClientesDao;
+import br.com.gestaovendas.dao.ItensDao;
 import br.com.gestaovendas.dao.PedidosDao;
 import br.com.gestaovendas.dao.ProdutosDao;
 
@@ -66,6 +67,13 @@ public class AppWebCondiguration {
 	public MultipartResolver multipartResolver() {
 		
 		return new CommonsMultipartResolver();
+		
+	}
+	
+	@Bean
+	public ItensDao getItensDao() {
+
+		return new ItensDao(getDataSource());
 		
 	}
 	

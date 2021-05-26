@@ -16,8 +16,8 @@
 		<div class="row">
 			<div class="row-6">
 				<h2>Cadastro de Produtos</h2>
-				
-				<form:form action="/Projeto06_GestaoVendas/cadprodutos" method="post" modelAttribute="produto" enctype="multipart/form-data">
+				<c:url var="post_url"  value="/cadprodutos" />
+				<form:form action="${post_url}" method="post" modelAttribute="produto" enctype="multipart/form-data">
 					<div class="form-group">
 						<form:label path="descricao">Descricao:</form:label>
 						<form:input path="descricao" cssClass="form-control" />

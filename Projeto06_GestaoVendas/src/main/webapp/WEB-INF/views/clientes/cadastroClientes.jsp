@@ -17,8 +17,8 @@
 			<div class="row-6">
 			
 				<h2>Cadastro de Clientes</h2>
-				
-				<form:form action="/Projeto06_GestaoVendas/cadcliente" method="post" modelAttribute="cliente">
+				<c:url var="post_url"  value="/cadcliente" />
+				<form:form action="${post_url}" method="post" modelAttribute="cliente">
 					<div class="form-group">
 						<form:label path="documento">Documento:</form:label>
 						<form:input path="documento" cssClass="form-control" />
