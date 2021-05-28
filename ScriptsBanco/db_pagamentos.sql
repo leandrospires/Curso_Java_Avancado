@@ -1,0 +1,11 @@
+CREATE TABLE db_pagamentos.pagamentos (
+	ID INT auto_increment NOT NULL,
+	NUMEROPEDIDO varchar(10) NOT NULL,
+	NUMEROCARTAO varchar(16) NOT NULL,
+	VALOR DOUBLE NOT NULL,
+	STATUS INT NOT NULL,
+	CONSTRAINT pagamentos_pk PRIMARY KEY (ID)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=latin1
+COLLATE=latin1_swedish_ci;

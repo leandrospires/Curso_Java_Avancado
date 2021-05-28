@@ -90,8 +90,58 @@
 					</tfoot>
 				</table>
 			</div>
+			<hr/>
+			<div class="col-6" style="padding-top: 25px;">
+				<div class="alert alert-primary">
+					<h2>EFETUAR PAGAMENTO</h2>
+					<label for="cartao">Cartão de Crédito:</label>
+					
+					<input type="text" class="form-control" id="cartao" name="cartao"/>
+					
+					<br/>
+					<input type="hidden" id="pedido" name="pedido" value="${pedidosVM.pedido}" />
+					<input type="hidden" id="valor" name="valor" value="${valorTotalPedido}"/>
+					
+					<button class="btn btn-primary" type="button" id="efetuarpagamento">Efetuar pagamento</button>
+					
+					<div id="resposta"></div>
+				</div>
+				
+			</div>
+			
 		</div>
 	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#efetuarpagamento').click(function(){
+				//var ctx = "${pageContext.request.contextPath}";
+				$.ajax({
+					dataType: 'json',
+					contentType: 'application/json',
+					url: 'http://localhost:8080/Projeto07_ApiPagamentos/api/pagamentos',
+					method: 'POST',
+					data: JSON.stringify({
+						numeropedido: $("#pedido").val(),
+						numerocartao: $("#cartao").val(),
+						valor: $("#valor").val(),
+						status: 1
+					}),
+					
+					success: function(resposta) {
+						$('#resposta').html('Pagamento efetuado com sucesso!');
+					},
+					
+					error: function(erro) {
+						alert('Erro: ' + erro.responseText);
+					}
+				});
+				
+			});
+		});
+	</script>
+	
 </body>
 
 </html>

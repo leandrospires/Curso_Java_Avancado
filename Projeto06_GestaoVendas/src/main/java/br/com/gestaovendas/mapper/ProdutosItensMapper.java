@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import br.com.gestaovendas.viewmodels.ClientePedidosVM;
 import br.com.gestaovendas.viewmodels.ProdutosItensVM;
 
 public class ProdutosItensMapper implements RowMapper<ProdutosItensVM>{
