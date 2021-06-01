@@ -3,6 +3,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 <%@include file="api_bootstrap.jsp" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
@@ -21,6 +22,7 @@
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href=<c:url value="/clientes/cadastro" />>Cadastro de Clientes</a>
 	          <a class="dropdown-item" href=<c:url value="/produtos/cadastro" />>Cadastro de Produtos</a>
+	          <a class="dropdown-item" href=<c:url value="/users/cadastro" />>Cadastro de Usuários</a>
 	        </div>
 	      </li>
 	      
@@ -35,8 +37,14 @@
 	      </li>
 	      
 	      <li class="nav-item"><a class="nav-link" href=<c:url value = "/pedidos/cadastro" />>Gestão de Pedidos</a></li>
-	      
-	      <li class="nav-item"><a class="nav-link" href=<c:url value = "/users/cadastro" />>Cadastro de Usuários</a></li>
+			
+			<security:authorize access="isAuthenticated()">
+				<security:authentication property="principal" var="user"/>
+				<li class="nav-item"><a class="nav-link" href=<c:url value = "/users/logout" />>Logout</a></li>
+				<div class="nav-link">
+					[ Bem vindo, ${user.login} ]
+				</div>
+			</security:authorize>	  			    
 		</ul>
 	</div>
 </nav>

@@ -32,6 +32,9 @@ public class UsersControllers {
 			String crypto = new BCryptPasswordEncoder().encode(senha);
 			usuario.setPassword(crypto);
 			usuario.setEnabled(true);
+			
+			usersDao.save(usuario);
+			
 			model.addAttribute("mensagem", "Usuario incluído com sucesso");
 			return "users/incluirUsuario";
 			
@@ -39,6 +42,11 @@ public class UsersControllers {
 			model.addAttribute("erro", e.getMessage());
 			return "erro";
 		}
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "users/loginUsuario";
 	}
 }
 

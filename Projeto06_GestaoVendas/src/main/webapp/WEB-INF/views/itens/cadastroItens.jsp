@@ -129,7 +129,7 @@
 			$.get('http://localhost:8080/Projeto07_ApiPagamentos/api/verificar/' + pedido, function(data, status){
 					resposta = data;
 					if(resposta.response == 'pago'){
-						$('#resposta').html('Pagamento já processado!');
+						$('#resposta').html('ATENÇÃO: Pagamento já processado!');
  						$(".btn").attr('disabled', 'disabled');
 						$(".remove").addClass('item');
 						

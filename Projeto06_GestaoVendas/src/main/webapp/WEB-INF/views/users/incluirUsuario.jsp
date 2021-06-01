@@ -10,22 +10,12 @@
 </head>
 <body>
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-	<a class="navbar-brand" href=<c:url value="/" />>Gestão de Vendas</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarNav" aria-controls="navbarNav"
-		aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-</nav>
+	<%@ include file="/WEB-INF/comuns/cabecalho.jsp"%>
 
-
-<body>	
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
-				<h1>Cadastro de Usuários</h1>
+				<h3>Cadastro de Usuário</h3>
 				<form action=<c:url value="/users/cadusuario" /> method="post">
 				
 					<div class="form-group">
