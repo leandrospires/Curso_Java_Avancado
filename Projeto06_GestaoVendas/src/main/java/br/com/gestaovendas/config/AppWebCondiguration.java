@@ -16,7 +16,7 @@ import br.com.gestaovendas.dao.PedidosDao;
 import br.com.gestaovendas.dao.ProdutosDao;
 
 @EnableWebMvc
-@ComponentScan(basePackages = "br.com.gestaovendas.controllers")
+@ComponentScan(basePackages = {	"br.com.gestaovendas.controllers","br.com.gestaovendas.security.dao"})
 public class AppWebCondiguration {
 	
 	@Bean

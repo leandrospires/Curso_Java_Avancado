@@ -17,11 +17,7 @@ public class PagamentosDao {
 	private EntityManager manager;
 	
 	public void save(Pagamento pagamento) {
-		
-		//manager.getTransaction().begin();
 		manager.persist(pagamento);
-		//manager.getTransaction().commit();
-		
 	}
 	
 	public List<Pagamento> list() {
@@ -32,10 +28,44 @@ public class PagamentosDao {
 	}
 	
 	public Pagamento get(int id) {
-		TypedQuery<Pagamento> query = manager.createQuery("select p from Pagamento p where p.id = :id", Pagamento.class);
-		
+		TypedQuery<Pagamento> query = manager
+				.createQuery("Select p from Pagamento p where p.id = :id", Pagamento.class);
 		query.setParameter("id", id);
-		
 		return query.getSingleResult();
 	}
+	
+	public Pagamento getByOrder(String id) {
+		
+		System.out.println("id: " + id);
+		
+		TypedQuery<Pagamento> query = manager
+				.createQuery("Select p from Pagamento p where p.numeropedido = :id", 
+						Pagamento.class);
+		query.setParameter("id", id);
+		return query.getSingleResult();
+		
+	}
+		
+	
+	public Pagamento get(String numeropedido) {
+		Pagamento pg = new Pagamento();
+		
+		try {
+			TypedQuery<Pagamento> query = manager.createQuery("select p from Pagamento p where p.numeropedido = :numeropedido", Pagamento.class);
+			
+			query.setParameter("numeropedido", numeropedido);
+			pg = query.getSingleResult();
+			return pg;
+			
+		} catch (Exception e) {
+			
+			return pg;
+			
+		}
+		
+		
+
+		
+		
+	}	
 }

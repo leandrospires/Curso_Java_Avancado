@@ -61,6 +61,8 @@ public class ItensController {
 			double valorTotalPedido = pedidosDao.retornarValorTotalPorPredido(idPedido);
 			model.addAttribute("valorTotalPedido", valorTotalPedido);
 			
+			
+			
 			return "itens/cadastroItens";
 			
 		} catch (Exception e) {
@@ -69,7 +71,6 @@ public class ItensController {
 		}
 		
 	}
-	
 	
 	@PostMapping("/caditem")
 	public String incluir(Item item, Model model) {

@@ -36,6 +36,7 @@
 	      
 	      <li class="nav-item"><a class="nav-link" href=<c:url value = "/pedidos/cadastro" />>Gestão de Pedidos</a></li>
 	      
+	      <li class="nav-item"><a class="nav-link" href=<c:url value = "/users/cadastro" />>Cadastro de Usuários</a></li>
 		</ul>
 	</div>
 </nav>

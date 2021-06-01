@@ -8,7 +8,11 @@
 
 <%@include file="/WEB-INF/comuns/api_bootstrap.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<style>
+	.item {
+		display:none;
+	}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/comuns/cabecalho.jsp"%>
@@ -34,7 +38,7 @@
 					
 					<input type="hidden" name="idPedido" value="${pedidosVM.idPedido}"/>
 					
-					<div class="form-group">
+					<div class="form-group remove">
 						<label for="idProduto">Selecione o Produto: </label>
 						<select class="form-control" name="idProduto">
 							<c:forEach var="p" items = "${produtos}">
@@ -43,12 +47,12 @@
 						</select>
 					</div>
 					
-					<div class="form-group">
+					<div class="form-group remove">
 						<label for="quantidade">Quantidade: </label> 
 						<input type="text" class="form-control" id="quantidade" name="quantidade">
 					</div>
 					
-					<button type="submit" class="btn btn-primary">Incluir Item</button>
+					<button id="btnIncluir" type="submit" class="btn btn-primary">Incluir Item</button>
 					
 				</form>				
 				
@@ -74,7 +78,7 @@
 								<td id="valorTotal"><fmt:formatNumber value="${pi.valorTotal}" type="currency" /></td>
 								<td>
 									<span class="badge badge-danger">
-									<a href=<c:url value="/itens/remocao/?id=${pi.idItens}&idPedido=${pi.idPedido}" /> >X</a>
+									<a href=<c:url value="/itens/remocao/?id=${pi.idItens}&idPedido=${pi.idPedido}" /> class="remove">X</a>
 									</span>
 								</td>					
 							</tr>
@@ -94,9 +98,9 @@
 			<div class="col-6" style="padding-top: 25px;">
 				<div class="alert alert-primary">
 					<h2>EFETUAR PAGAMENTO</h2>
-					<label for="cartao">Cartão de Crédito:</label>
+					<label class="remove" for="cartao">Cartão de Crédito:</label>
 					
-					<input type="text" class="form-control" id="cartao" name="cartao"/>
+					<input class="remove" type="text" class="form-control" id="cartao" name="cartao"/>
 					
 					<br/>
 					<input type="hidden" id="pedido" name="pedido" value="${pedidosVM.pedido}" />
@@ -114,7 +118,32 @@
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script>
+		function verificarPedido(){
+			var pedido = $("#pedido").val();
+			pedido = pedido.replace('/', '');
+			$("#pedido").val(pedido);
+			
+			let resposta = {};
+			
+			console.log("Num. do pedido: " + pedido);
+			$.get('http://localhost:8080/Projeto07_ApiPagamentos/api/verificar/' + pedido, function(data, status){
+					resposta = data;
+					if(resposta.response == 'pago'){
+						$('#resposta').html('Pagamento já processado!');
+ 						$(".btn").attr('disabled', 'disabled');
+						$(".remove").addClass('item');
+						
+					}
+				console.log("data: " + data);
+				console.log("resposta: " + resposta.response)
+				console.log("status: " + status);
+			});								
+		}
+	
 		$(document).ready(function(){
+			
+			verificarPedido();
+			
 			$('#efetuarpagamento').click(function(){
 				//var ctx = "${pageContext.request.contextPath}";
 				$.ajax({
@@ -130,6 +159,8 @@
 					}),
 					
 					success: function(resposta) {
+ 						$(".btn").attr('disabled', 'disabled');
+						$(".remove").addClass('item');
 						$('#resposta').html('Pagamento efetuado com sucesso!');
 					},
 					
@@ -137,7 +168,6 @@
 						alert('Erro: ' + erro.responseText);
 					}
 				});
-				
 			});
 		});
 	</script>
